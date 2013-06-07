@@ -1,0 +1,61 @@
+body {
+    background: #fff;
+}
+#menu{
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	a{
+		color: #fff;
+		background: #000;
+		padding: 2px 5px;
+		display: block;
+		float: left;
+	}
+}
+#sections{
+	overflow: auto;
+	position: relative;
+    .sections-row{
+    	clear: both;
+    	.section{
+    		position: relative;
+    		display: block;
+    		float: left;
+    		font-size: 420px;
+    		color: #fff;
+    	}
+    }
+}
+
+#section1{
+	background-color: #0000ff;
+}
+#section2{
+	background-color: #0000dd;
+}
+#section3{
+	background-color: #0000aa;
+}
+#section4{
+	background-color: #000099;
+}
+#section5{
+	background-color: #000066;
+}
+
+#section6{
+	background-color: #ff0000;
+}
+#section7{
+	background-color: #dd0000;
+}
+#section8{
+	background-color: #a00;
+}
+#section9{
+	background-color: #900;
+}
+#section10{
+	background-color: #600;
+}

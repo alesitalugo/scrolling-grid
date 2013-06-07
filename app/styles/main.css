@@ -1,0 +1,87 @@
+/* line 1, main.scss */
+body {
+  background: #fff;
+}
+
+/* line 4, main.scss */
+#menu {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+/* line 8, main.scss */
+#menu a {
+  color: #fff;
+  background: #000;
+  padding: 2px 5px;
+  display: block;
+  float: left;
+}
+
+/* line 16, main.scss */
+#sections {
+  overflow: auto;
+  position: relative;
+}
+/* line 19, main.scss */
+#sections .sections-row {
+  clear: both;
+}
+/* line 21, main.scss */
+#sections .sections-row .section {
+  position: relative;
+  display: block;
+  float: left;
+  font-size: 420px;
+  color: #fff;
+}
+
+/* line 31, main.scss */
+#section1 {
+  background-color: #0000ff;
+}
+
+/* line 34, main.scss */
+#section2 {
+  background-color: #0000dd;
+}
+
+/* line 37, main.scss */
+#section3 {
+  background-color: #0000aa;
+}
+
+/* line 40, main.scss */
+#section4 {
+  background-color: #000099;
+}
+
+/* line 43, main.scss */
+#section5 {
+  background-color: #000066;
+}
+
+/* line 47, main.scss */
+#section6 {
+  background-color: #ff0000;
+}
+
+/* line 50, main.scss */
+#section7 {
+  background-color: #dd0000;
+}
+
+/* line 53, main.scss */
+#section8 {
+  background-color: #a00;
+}
+
+/* line 56, main.scss */
+#section9 {
+  background-color: #900;
+}
+
+/* line 59, main.scss */
+#section10 {
+  background-color: #600;
+}
