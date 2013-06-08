@@ -1,6 +1,6 @@
 $slider_sections = {
 	'__sections': [],
-	'__actual_slide': [],
+	'__actual_slide': [], // 0: row, 1: section
 	'slider': null,
 	'init': function(el){
 		// ID of the slider
@@ -35,7 +35,7 @@ $slider_sections = {
 		section = this.__actual_slide[1];
 		var $slide_to_row = $(this.slider).find('.sections-row')[this.__actual_slide[0]];
 		var $slide_to_section = $($slide_to_row).find('.section')[this.__actual_slide[1]];
-		$(this.slider).scrollTo($($slide_to_section), 300);
+		$(this.slider).stop().scrollTo($($slide_to_section), 300);
 	},
 	'slide_next': function(){
 		var actual_row = this.__actual_slide[0];
@@ -92,29 +92,26 @@ $slider_sections = {
 
 		if(scroll_status)
 			this.slide( this.__actual_slide[0], this.__actual_slide[1] );
-		
+
 	}, 
 	'slide_down':function(){
-		var actual_row = this.__actual_slide[1];
-		var actual_section = this.__actual_slide[0];
+		var actual_row = this.__actual_slide[0];
+		var actual_section = this.__actual_slide[1];
 
-		if(actual_row >= ( this.__sections[actual_row] - 1 ) ){
-			if( (this.__actual_slide[0]+1) < this.__sections.length ){
-				this.__actual_slide[0]++;
-				this.__actual_slide[1]=0;
-			} 
-		} else {
-			this.__actual_slide[1]++;
+		if( (actual_row+1) < this.__sections.length ){
+			this.__actual_slide[0]++;
+			this.__actual_slide[1] = 0;
+			scroll_status = true;
 		}
-		console.log(actual_row, actual_section);
 
-		this.slide();
+		console.log(this.__actual_slide);
+		this.slide( this.__actual_slide[0], this.__actual_slide[1] );
 	}
 };
 
 var $slider_about_us = $slider_sections;
-
-$slider_about_us.init( $('#sections') );
+$slider_about_us_el = document.getElementById('sections');
+$slider_about_us.init( $slider_about_us_el );
 $slider_about_us.slide(  );
 
 $(window).on('resize', function(){
@@ -125,7 +122,15 @@ $('#menu').on('click', '.next-slide', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_next();
 });
+Hammer($slider_about_us_el).on('swipeleft', function(e){
+	e.preventDefault();
+	$slider_about_us.slide_next();
+});
 $('#menu').on('click', '.prev-slide', function(e){
+	e.preventDefault();
+	$slider_about_us.slide_prev();
+});
+Hammer($slider_about_us_el).on('swiperight', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_prev();
 });
@@ -133,7 +138,15 @@ $('#menu').on('click', '.up-slide', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_up();
 });
+Hammer($slider_about_us_el).on('swipeup', function(e){
+	e.preventDefault();
+	$slider_about_us.slide_up();
+});
 $('#menu').on('click', '.down-slide', function(e){
+	e.preventDefault();
+	$slider_about_us.slide_down();
+});
+Hammer($slider_about_us_el).on('swipedown', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_down();
 });
