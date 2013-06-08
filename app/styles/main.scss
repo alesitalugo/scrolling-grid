@@ -31,55 +31,9 @@ body {
     }
 }
 
-#section1{
-	background-color: #0000ff;
-}
-#section2{
-	background-color: #0000dd;
-}
-#section3{
-	background-color: #0000aa;
-}
-#section4{
-	background-color: #000099;
-}
-#section5{
-	background-color: #000066;
-}
-
-#section6{
-	background-color: #ff0000;
-}
-#section7{
-	background-color: #dd0000;
-}
-#section8{
-	background-color: #a00;
-}
-#section9{
-	background-color: #900;
-}
-#section10{
-	background-color: #600;
-}
-//@color_tercera_fila: #0f0;
-
-#section11{
-	background-color: #0f0;
-}
-
-#section12{
-	background-color: #0c0;
-}
-#section13{
-	background-color: #0a0;
-}
-#section14{
-	background-color: #090;
-}
-#section15{
-	background-color: #060;
-}
-#section16{
-	background-color: #030;
+@for $i from 1 through 20{
+	#section#{$i}{
+    	background-color: adjust-color(#101042, $blue: 10*$i);
+;
+	}
 }

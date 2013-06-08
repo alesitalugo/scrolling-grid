@@ -110,13 +110,36 @@ $slider_sections = {
 };
 
 var $slider_about_us = $slider_sections;
+
 $slider_about_us_el = document.getElementById('sections');
 $slider_about_us.init( $slider_about_us_el );
-$slider_about_us.slide(  );
+$slider_about_us.slide();
 
 $(window).on('resize', function(){
 	$slider_about_us.resize_adjust();
 });
+$(window).keydown(function(e){
+	var keycode_function = {
+		// Up
+		'38' : function(){
+			$slider_about_us.slide_up();
+		},
+		// Down
+		'40' : function(){
+			$slider_about_us.slide_down();
+		},
+		// Prev
+		'37' : function(){
+			$slider_about_us.slide_prev();
+		},
+		// Next
+		'39' : function(){
+			$slider_about_us.slide_next();
+		}
+	};
+	keycode_function[e.keyCode]();
+});
+
 
 $('#menu').on('click', '.next-slide', function(e){
 	e.preventDefault();
