@@ -80,22 +80,19 @@ $slider_sections = {
 		this.slide( this.__actual_slide[0], this.__actual_slide[0] );
 	}, 
 	'slide_up':function(){
-		var actual_row = this.__actual_slide[1];
-		var actual_section = this.__actual_slide[0];
+		var actual_row = this.__actual_slide[0];
+		var actual_section = this.__actual_slide[1];
+		var scroll_status = false;
 
-		if(actual_row >= 0 ){
-			if( (this.__actual_slide[0]-1)>= 0){
-				this.__actual_slide[0]--;
-				if( !isNaN(this.__sections[this.__actual_slide[0]] - 1 ) ){
-					this.__actual_slide[1]= ( this.__sections[this.__actual_slide[0]] ) - 1;
-				}
-			}
-		} else {
+		if( (actual_row-1) >= 0 ){
 			this.__actual_slide[0]--;
+			this.__actual_slide[1] = 0;
+			scroll_status = true;
 		}
 
-		console.log(this.__actual_slide);
-		this.slide( this.__actual_slide[0], this.__actual_slide[0] );
+		if(scroll_status)
+			this.slide( this.__actual_slide[0], this.__actual_slide[1] );
+		
 	}, 
 	'slide_down':function(){
 		var actual_row = this.__actual_slide[1];
