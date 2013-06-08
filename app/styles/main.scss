@@ -1,7 +1,7 @@
 body {
-    background: #fff;
+    background: #fff
 }
-#menu{
+#menu, #menu-numeros{
 	position: fixed;
 	top: 0;
 	z-index: 100;
@@ -13,8 +13,12 @@ body {
 		float: left;
 	}
 }
+#menu-numeros{
+	top: 50px;
+}
 #sections{
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y:auto;
 	position: relative;
     .sections-row{
     	clear: both;
@@ -22,7 +26,6 @@ body {
     		position: relative;
     		display: block;
     		float: left;
-    		font-size: 420px;
     		color: #fff;
     	}
     }
@@ -58,4 +61,25 @@ body {
 }
 #section10{
 	background-color: #600;
+}
+//@color_tercera_fila: #0f0;
+
+#section11{
+	background-color: #0f0;
+}
+
+#section12{
+	background-color: #0c0;
+}
+#section13{
+	background-color: #0a0;
+}
+#section14{
+	background-color: #090;
+}
+#section15{
+	background-color: #060;
+}
+#section16{
+	background-color: #030;
 }
