@@ -18,7 +18,21 @@ body {
 #menu-numeros{
     top: 50px;
 }
-#sections{
+#menu2{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    a{
+        color: #00f;
+        background: #fff;
+        padding: 2px 5px;
+        display: block;
+        float: left;
+        font-size: 15px;
+    }
+}
+.slider{
     overflow-x: hidden;
     overflow-y:auto;
     position: relative;
@@ -29,7 +43,8 @@ body {
             display: block;
             float: left;
             color: #fff;
-            font-size: 420px;
+            font-size: 100px;
+            height: 100%;
         }
     }
 }
@@ -39,7 +54,7 @@ body {
         background-color: adjust-color(#101042, $blue: 10*$i);
     }
 }
-@for $i from 1 through 5 {
+@for $i from 1 through 10 {
     #section3-#{$i}{
         background-color: adjust-color(#101042, $red:10*$i);
     }

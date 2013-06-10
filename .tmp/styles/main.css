@@ -24,145 +24,188 @@ body {
 }
 
 /* line 21, ../../app/styles/main.scss */
-#sections {
+#menu2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+/* line 26, ../../app/styles/main.scss */
+#menu2 a {
+  color: #00f;
+  background: #fff;
+  padding: 2px 5px;
+  display: block;
+  float: left;
+  font-size: 15px;
+}
+
+/* line 35, ../../app/styles/main.scss */
+.slider {
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
 }
-/* line 25, ../../app/styles/main.scss */
-#sections .sections-row {
+/* line 39, ../../app/styles/main.scss */
+.slider .sections-row {
   clear: both;
 }
-/* line 27, ../../app/styles/main.scss */
-#sections .sections-row .section {
+/* line 41, ../../app/styles/main.scss */
+.slider .sections-row .section {
   position: relative;
   display: block;
   float: left;
   color: #fff;
-  font-size: 420px;
+  font-size: 100px;
+  height: 100%;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section1 {
   background-color: #10104c;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section2 {
   background-color: #101056;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section3 {
   background-color: #101060;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section4 {
   background-color: #10106a;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section5 {
   background-color: #101074;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section6 {
   background-color: #10107e;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section7 {
   background-color: #101088;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section8 {
   background-color: #101092;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section9 {
   background-color: #10109c;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section10 {
   background-color: #1010a6;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section11 {
   background-color: #1010b0;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section12 {
   background-color: #1010ba;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section13 {
   background-color: #1010c4;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section14 {
   background-color: #1010ce;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section15 {
   background-color: #1010d8;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section16 {
   background-color: #1010e2;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section17 {
   background-color: #1010ec;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section18 {
   background-color: #1010f6;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section19 {
   background-color: #1010ff;
 }
 
-/* line 38, ../../app/styles/main.scss */
+/* line 53, ../../app/styles/main.scss */
 #section20 {
   background-color: #1010ff;
 }
 
-/* line 43, ../../app/styles/main.scss */
+/* line 58, ../../app/styles/main.scss */
 #section3-1 {
   background-color: #1a1042;
 }
 
-/* line 43, ../../app/styles/main.scss */
+/* line 58, ../../app/styles/main.scss */
 #section3-2 {
   background-color: #241042;
 }
 
-/* line 43, ../../app/styles/main.scss */
+/* line 58, ../../app/styles/main.scss */
 #section3-3 {
   background-color: #2e1042;
 }
 
-/* line 43, ../../app/styles/main.scss */
+/* line 58, ../../app/styles/main.scss */
 #section3-4 {
   background-color: #381042;
 }
 
-/* line 43, ../../app/styles/main.scss */
+/* line 58, ../../app/styles/main.scss */
 #section3-5 {
   background-color: #421042;
+}
+
+/* line 58, ../../app/styles/main.scss */
+#section3-6 {
+  background-color: #4c1042;
+}
+
+/* line 58, ../../app/styles/main.scss */
+#section3-7 {
+  background-color: #561042;
+}
+
+/* line 58, ../../app/styles/main.scss */
+#section3-8 {
+  background-color: #601042;
+}
+
+/* line 58, ../../app/styles/main.scss */
+#section3-9 {
+  background-color: #6a1042;
+}
+
+/* line 58, ../../app/styles/main.scss */
+#section3-10 {
+  background-color: #741042;
 }
