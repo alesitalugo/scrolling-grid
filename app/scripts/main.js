@@ -3,6 +3,7 @@ Slider = ( function( options ) {
     var __actual_slide = [0,0]; // 0: row, 1: section
     var slider = null;
     var transition = 'scrollto';
+    var prev_slide = null;
     if( options.transition != null)
         transition = options.transition; /* To DO: More transitions */
 
@@ -49,10 +50,10 @@ Slider = ( function( options ) {
                 $(this.slider).stop().scrollTo( $($slide_to_section), 300);
             } else {
                 console.log( __actual_slide );
-
-                $(this.slider).find('.section').removeClass('actual').addClass('back');
+                $(this.slider).find('.section').removeClass('hold-on actual').addClass('back');
+                $(prev_slide).addClass('hold-on');
                 $( $slide_to_section ).removeClass('back').addClass('actual');
-
+                prev_slide = $slide_to_section;
             }
 
         },

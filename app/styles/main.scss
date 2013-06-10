@@ -70,6 +70,10 @@ body {
                     position: relative;
                     left: 100%;
                 }
+                &.hold-on{
+                    position: absolute;
+                    top: 0; left: 0;
+                }
             }
 
         }
