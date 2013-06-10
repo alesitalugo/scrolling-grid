@@ -65,6 +65,7 @@ $slider_sections = {
 			console.log( this.__actual_slide );
 		}
 	},
+	
 	'slide_prev': function(){
 		var actual_row = this.__actual_slide[0];
 		var actual_section = this.__actual_slide[1];
