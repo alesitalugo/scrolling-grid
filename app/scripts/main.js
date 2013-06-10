@@ -12,7 +12,7 @@ $slider_sections = {
 			var $actual_row = $(this.slider).children('.sections-row')[i];
 			this.__sections.push($($actual_row).children('.section').length);
 		}
-		console.log( this.__sections );
+		//console.log( this.__sections );
 
 		// .section-row's width
 		this.resize_adjust();
@@ -39,9 +39,10 @@ $slider_sections = {
 		var $slide_to_row = $(this.slider).children('.sections-row')[this.__actual_slide[0]];
 		var $slide_to_section = $($slide_to_row).children('.section')[this.__actual_slide[1]];
 		if(this.transition == 'scrollto'){
-			console.log( $($slide_to_section) );
-			$(this.slider).stop().scrollTo( $($slide_to_section), 300);
+			$(this.slider).stop().scrollTo( $($slide_to_section), 300);			
 		}
+		console.log('slide to row', $slide_to_row,'slide to section', $slide_to_section);
+
 	},
 	'slide_next': function(){
 		var actual_row = this.__actual_slide[0];
@@ -65,7 +66,6 @@ $slider_sections = {
 			console.log( this.__actual_slide );
 		}
 	},
-	
 	'slide_prev': function(){
 		var actual_row = this.__actual_slide[0];
 		var actual_section = this.__actual_slide[1];
@@ -157,11 +157,16 @@ $(window).keydown(function(e){
 	}
 });
 $('#menu-numeros').on('click', '.number', function(){
+
 });
 
 $('#menu').on('click', '.next-slide', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_next();
+
+	var dot = $slider_about_us_el.dataset.dot; // dot = number;
+	$slider_about_us.datset.dot = '100';
+
 });
 Hammer($slider_about_us_el).on('swipeleft', function(e){
 	e.preventDefault();
