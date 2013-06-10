@@ -1,4 +1,4 @@
-Slider = (function(){
+Slider = ( function() {
     var __sections = [];
     var __actual_slide = [0,0]; // 0: row, 1: section
     var slider = null;
@@ -211,7 +211,33 @@ $('#menu2').on('click', '.next-slide', function(e){
     e.preventDefault();
     $slider_inception.slide_next();
 });
+
+Hammer($slider_about_us_el).on('swipeleft', function(e){
+    e.preventDefault();
+    $slider_inception.slide_next();
+});
+
 $('#menu2').on('click', '.prev-slide', function(e){
     e.preventDefault();
     $slider_inception.slide_prev();
+});
+Hammer($slider_about_us_el).on('swiperight', function(e){
+    e.preventDefault();
+    $slider_inception.slide_prev();
+});
+$('#menu2').on('click', '.up-slide', function(e){
+    e.preventDefault();
+    $slider_inception.slide_up();
+});
+Hammer($slider_about_us_el).on('swipeup', function(e){
+    e.preventDefault();
+    $slider_inception.slide_up();
+});
+$('#menu2').on('click', '.down-slide', function(e){
+    e.preventDefault();
+    $slider_inception.slide_down();
+});
+Hammer($slider_about_us_el).on('swipedown', function(e){
+    e.preventDefault();
+    $slider_inception.slide_down();
 });
