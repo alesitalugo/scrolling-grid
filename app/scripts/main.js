@@ -167,9 +167,8 @@ $(window).keydown(function(e){
         keycode_function[e.keyCode]();
     }
 });
-$('#menu-numeros').on('click', '.number', function(){
 
-});
+$('#menu-numeros').on('click', '.number', function(){});
 /**** Eventos Slider 1 */
 $('#menu').on('click', '.next-slide', function(e){
     e.preventDefault();
