@@ -27,6 +27,7 @@ body {
     		display: block;
     		float: left;
     		color: #fff;
+    		font-size: 420px;
     	}
     }
 }
@@ -34,6 +35,10 @@ body {
 @for $i from 1 through 20{
 	#section#{$i}{
     	background-color: adjust-color(#101042, $blue: 10*$i);
-;
+	}
+}
+@for $i from 1 through 5 {
+	#section3-#{$i}{
+		background-color: adjust-color(#101042, $red:10*$i);
 	}
 }
