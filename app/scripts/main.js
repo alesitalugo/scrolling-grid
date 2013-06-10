@@ -41,8 +41,6 @@ $slider_sections = {
 		if(this.transition == 'scrollto'){
 			$(this.slider).stop().scrollTo( $($slide_to_section), 300);			
 		}
-		console.log('slide to row', $slide_to_row,'slide to section', $slide_to_section);
-
 	},
 	'slide_next': function(){
 		var actual_row = this.__actual_slide[0];
@@ -63,7 +61,6 @@ $slider_sections = {
 		
 		if(scroll_status) {
 			this.slide( this.__actual_slide[0], this.__actual_slide[0] );
-			console.log( this.__actual_slide );
 		}
 	},
 	'slide_prev': function(){
@@ -163,9 +160,8 @@ $('#menu-numeros').on('click', '.number', function(){
 $('#menu').on('click', '.next-slide', function(e){
 	e.preventDefault();
 	$slider_about_us.slide_next();
-
-	var dot = $slider_about_us_el.dataset.dot; // dot = number;
-	$slider_about_us.datset.dot = '100';
+	console.log($($slider_about_us_el).children('.section'));
+	//$slider_about_us.datset.dot = '100';
 
 });
 Hammer($slider_about_us_el).on('swipeleft', function(e){
