@@ -36,15 +36,42 @@ body {
     overflow-x: hidden;
     overflow-y:auto;
     position: relative;
-    .sections-row{
-        clear: both;
-        .section{
-            position: relative;
-            display: block;
-            float: left;
-            color: #fff;
-            font-size: 100px;
-            height: 100%;
+    &.scroll-to{
+        .sections-row{
+            clear: both;
+            .section{
+                position: relative;
+                display: block;
+                float: left;
+                color: #fff;
+                font-size: 100px;
+                height: 100%;
+            }
+        }
+    }
+    &.pageflip{
+        .sections-row{
+            clear: none;
+            .section{
+                position: relative;
+                display: block;
+                color: #fff;
+                font-size: 100px;
+                z-index: 100;
+                &.actual{
+                    position: absolute;
+                    top: 0; left: 0 !important;
+                    float: left;
+                    z-index: 1000;
+                    background-color: #080 !important;
+                    @include transition(left 0.3s ease-in);
+                }
+                &.back{
+                    position: relative;
+                    left: 100%;
+                }
+            }
+
         }
     }
 }
