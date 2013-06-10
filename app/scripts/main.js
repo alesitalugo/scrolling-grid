@@ -27,11 +27,11 @@ Slider = (function(){
 
             $(this.slider).css({
                 'width': $(window).width(),
-                //'height': $(window).height()
+                'height': $(window).height()
             });
             $(slider_rows).children('.section').css({
                 'width': $(window).width(),
-                //'height': $(window).height()
+                'height': $(window).height()
             });
             $(this.slider).children('.sections-row').css({
                 'width': $(window).width() * sections_width,
@@ -43,10 +43,10 @@ Slider = (function(){
             __actual_slide[1] = section;
             var $slide_to_row = $(this.slider).children('.sections-row')[__actual_slide[0]];
             var $slide_to_section = $($slide_to_row).children('.section')[__actual_slide[1]];
+
             if(transition == 'scrollto'){
                 $(this.slider).stop().scrollTo( $($slide_to_section), 300);
             }
-            //console.log( __actual_slide  );
 
         },
         'slide_next': function(){
@@ -133,7 +133,7 @@ $slider_about_us_el = document.getElementById('sections');
 $slider_inception_el = document.getElementById('sections2');
 
 $slider_about_us.init( $slider_about_us_el );
-$slider_about_us.slide(0,2);
+//$slider_about_us.slide(0,2);
 
 $slider_inception.init( $slider_inception_el );
 
@@ -211,4 +211,8 @@ Hammer($slider_about_us_el).on('swipedown', function(e){
 $('#menu2').on('click', '.next-slide', function(e){
     e.preventDefault();
     $slider_inception.slide_next();
+});
+$('#menu2').on('click', '.prev-slide', function(e){
+    e.preventDefault();
+    $slider_inception.slide_prev();
 });
