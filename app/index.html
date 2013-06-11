@@ -25,69 +25,92 @@
             <a href="#" class="down-slide">Abajo</a>
         </div>
         <div id="menu-numeros">
-            <a href="#" class="number">1</a>
-            <a href="#" class="number">2</a>
-            <a href="#" class="number">3</a>
-            <a href="#" class="number">4</a>
-            <a href="#" class="number">5</a>
+            <a href="#" class="number" data-row="0" data-section="0">1</a>
+            <a href="#" class="number" data-row="2" data-section="1">2</a>
+            <a href="#" class="number" data-row="3" data-section="2">3</a>
+            <a href="#" class="number" data-row="0" data-section="3">4</a>
+            <a href="#" class="number" data-row="1" data-section="4">5</a>
         </div>
-        <div id="sections">
+        <div id="sections" class="slider scroll-to">
             <div class="sections-row">
-                <section id="section1" class="section" data-dot="uno">
+                <section id="section1" class="section">
                     1.1
                 </section>
-                <section id="section2" class="section" data-dot="uno">
+                <section id="section2" class="section">
                     1.2
                 </section>
-                <section id="section3" class="section" data-dot="uno">
+
+                <section id="section3" class="section">
                     1.3
-                    <div id="slider2">
+
+                    <div id="menu2">
+                        <a href="#" class="prev-slide">Anterior</a>
+                        <a href="#" class="next-slide">Siguiente</a>
+                        <a href="#" class="up-slide">Arriba</a>
+                        <a href="#" class="down-slide">Abajo</a>
+                    </div>
+                    <div id="sections2" class="slider pageflip">
                         <div class="sections-row">
-                            <section id="section3-1" class="section" data-dot="uno">
-                                1.3.1
+                            <section id="section3-1" class="section actual">
+                                1.3.1.1
                             </section>
-                            <section id="section3-2" class="section" data-dot="uno">
-                                1.3.2
+                            <section id="section3-2" class="section">
+                                1.3.1.2
                             </section>
-                            <section id="section3-3" class="section" data-dot="uno">
-                                1.3.3
+                            <section id="section3-3" class="section">
+                                1.3.1.3
                             </section>
-                            <section id="section3-4" class="section" data-dot="uno">
-                                1.3.4
+                        </div>
+                        <div class="sections-row">
+                            <section id="section3-4" class="section">
+                                1.3.2.1
                             </section>
-                            <section id="section3-5" class="section" data-dot="uno">
-                                1.3.5
+                            <section id="section3-5" class="section">
+                                1.3.2.2
+                            </section>
+                            <section id="section3-6" class="section">
+                                1.3.2.3
+                            </section>
+                        </div>
+                        <div class="sections-row">
+                            <section id="section3-7" class="section">
+                                1.3.3.1
+                            </section>
+                            <section id="section3-8" class="section">
+                                1.3.3.2
+                            </section>
+                            <section id="section3-9" class="section">
+                                1.3.3.3
                             </section>
                         </div>
                     </div>
-                
                 </section>
-                <section id="section4" class="section" data-dot="">
+                <section id="section4" class="section">
                     1.4
                 </section>
-                <section id="section5" class="section" data-dot="">
+                <section id="section5" class="section">
                     1.5
                 </section>
             </div>
-       
+
             <div class="sections-row">
-                <section id="section6" class="section" data-dot="">
+                <section id="section6" class="section">
                     2.1
                 </section>
-                <section id="section7" class="section" data-dot="">
+                <section id="section7" class="section">
                     2.2
                 </section>
-                <section id="section8" class="section" data-dot="">
+                <section id="section8" class="section">
                     2.3
                 </section>
-                <section id="section9" class="section" data-dot="">
+                <section id="section9" class="section">
                     2.4
                 </section>
-                <section id="section10" class="section" data-dot="">
+                <section id="section10" class="section">
                     2.5
                 </section>
             </div>
-        <!--
+
             <div class="sections-row">
                 <section id="section11" class="section">
                     3.1
@@ -122,14 +145,14 @@
                     4.5
                 </section>
             </div>
-        -->
+
         </div>
 
         <!-- build:js scripts/main.js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="scripts/jquery.scrollTo-1.4.3.1-min.js"></script>
         <script src="scripts/hammer.min.js"></script>
-        
+
         <script src="scripts/main.js"></script>
 
         <!-- endbuild -->
