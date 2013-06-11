@@ -37,9 +37,9 @@ body {
     overflow-y:auto;
     position: relative;
     &.scroll-to{
-        .sections-row{
+        & > .sections-row{
             clear: both;
-            .section{
+            & > .section{
                 position: relative;
                 display: block;
                 float: left;
@@ -50,9 +50,9 @@ body {
         }
     }
     &.pageflip{
-        .sections-row{
+        & > .sections-row{
             clear: none;
-            .section{
+            & > .section{
                 position: relative;
                 display: block;
                 color: #fff;

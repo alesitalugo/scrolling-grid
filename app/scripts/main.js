@@ -1,7 +1,7 @@
 Slider = ( function( options ) {
     'use strict';
     var sections        = [];
-    var actual_slide    = { 'row': 0, 'section': 0 }; // 0: row, 1: section
+    var actual_slide    = { 'row': 0, 'section': 0 };
     var slider          = null;
     var transition      = 'scrollto'; //Default transition.
     var prev_slide      = null;
