@@ -1,26 +1,33 @@
 Slider = ( function( options ) {
-    var __sections = [];
-    var __actual_slide = [0,0]; // 0: row, 1: section
-    var slider = null;
-    var transition = 'scrollto';
-    var prev_slide = null;
-    if( options.transition != null)
-        transition = options.transition; /* To DO: More transitions */
+    'use strict';
+    var sections        = [];
+    var actual_slide    = { 'row': 0, 'section': 0 }; // 0: row, 1: section
+    var slider          = null;
+    var transition      = 'scrollto'; //Default transition.
+    var prev_slide      = null;
+    var slide_direction = null;
+
+    if( options.transition != null)     // Set the transition efect | To Do: More transitions
+        transition = options.transition;
 
     return {
-        'init': function( el ){
+        'init' : function( el ){
             this.slider = el;
             // Asigns value to __rows
-            for (i=0; i < $(this.slider).children('.sections-row').length; i++){
+            for ( var i=0; i < $(this.slider).children('.sections-row').length; i++){
                 var $actual_row = $(this.slider).children('.sections-row')[i];
-                __sections.push( $($actual_row).children('.section').length );
+                sections.push( $($actual_row).children('.section').length );
+                $( $($actual_row).children('.section')  ).each(function(j){
+                    this.setAttribute('data-row', i);
+                    this.setAttribute('data-section', j);
+                });
             }
+
             // .section-row's width
             this.resize_adjust();
         },
-
-        'resize_adjust': function(){
-            var sections_width = Math.max.apply(null, __sections);
+        'resize_adjust' : function(){
+            var sections_width = Math.max.apply(null, sections);
             var slider_rows = $(this.slider).children('.sections-row');
             var css_section = {}
 
@@ -40,93 +47,101 @@ Slider = ( function( options ) {
             });
 
         },
-        'slide':function(row, section){
-            __actual_slide[0] = row;
-            __actual_slide[1] = section;
-            var $slide_to_row = $(this.slider).children('.sections-row')[__actual_slide[0]];
-            var $slide_to_section = $($slide_to_row).children('.section')[__actual_slide[1]];
+        'slide' : function(row, section){
+            var $slide_to_row = null;
+            var $slide_to_section = null;
 
-            if(transition == 'scrollto'){
-                $(this.slider).stop().scrollTo( $($slide_to_section), 300);
-            } else {
-                console.log( __actual_slide );
-                $(this.slider).find('.section').removeClass('hold-on actual').addClass('back');
-                $(prev_slide).addClass('hold-on');
-                $( $slide_to_section ).removeClass('back').addClass('actual');
-                prev_slide = $slide_to_section;
+            if( typeof( $(this.slider).children('.sections-row')[row] ) !== 'undefined' ){
+                $slide_to_row = $(this.slider).children('.sections-row')[row];
+                if( typeof( $($slide_to_row).children('.section')[section] ) !== 'undefined' ){
+                    actual_slide.row = row;
+                    actual_slide.section = section;
+                    $slide_to_section = $($slide_to_row).children('.section')[actual_slide.section];
+                    slide_direction = 'left';
+                    if( transition == 'scrollto' ){
+                        $(this.slider).stop().scrollTo( $($slide_to_section), 300);
+                    } else {
+                        console.log( actual_slide );
+                        $(this.slider).find('.section').removeClass('hold-on actual').addClass('back');
+                        $(prev_slide).addClass('hold-on');
+                        $( $slide_to_section ).removeClass('back').addClass('actual');
+                        prev_slide = $slide_to_section;
+
+                    }
+                }
             }
 
         },
-        'slide_next': function(){
-            var actual_row = __actual_slide[0];
-            var actual_section = __actual_slide[1];
+        'slide_next' : function(){
+            var actual_row = actual_slide.row;
+            var actual_section = actual_slide.section;
             var scroll_status = false;
 
 
-             if(actual_section >= ( __sections[actual_row] - 1 ) ){
-                if( ( __actual_slide[0]+1 ) < __sections.length ){
-                    __actual_slide[0]++;
-                    __actual_slide[1]=0;
+             if(actual_section >= ( sections[actual_row] - 1 ) ){
+                if( ( actual_slide.row+1 ) < sections.length ){
+                    actual_slide.row++;
+                    actual_slide.section=0;
                     scroll_status = true;
                 }
 
             } else {
-                __actual_slide[1]++;
+                actual_slide.section++;
                 scroll_status = true;
             }
             if(scroll_status)
-                this.slide( __actual_slide[0], __actual_slide[1] );
+                this.slide( actual_slide.row, actual_slide.section );
 
         },
-        'slide_prev': function(){
-            var actual_row = __actual_slide[0];
-            var actual_section = __actual_slide[1];
+        'slide_prev' : function(){
+            var actual_row = actual_slide.row;
+            var actual_section = actual_slide.section;
             var scroll_status = false;
 
             if(actual_section <= 0 ){
-                if( (__actual_slide[0]-1) >= 0  ){
-                    __actual_slide[0]--;
-                    if( !isNaN( __sections[__actual_slide[0]] - 1 ) ){
-                        __actual_slide[1]=( __sections[__actual_slide[0]] ) - 1;
+                if( (actual_slide.row-1) >= 0  ){
+                    actual_slide.row--;
+                    if( !isNaN( sections[actual_slide.row] - 1 ) ){
+                        actual_slide.section=( sections[actual_slide.row] ) - 1;
                         scroll_status = true;
                     }
                 }
 
             } else {
-                __actual_slide[1]--;
+                actual_slide.section--;
                 scroll_status = true;
             }
             if (scroll_status)
-                this.slide( __actual_slide[0], __actual_slide[1] );
+                this.slide( actual_slide.row, actual_slide.section );
         },
-        'slide_up':function(){
-            var actual_row = __actual_slide[0];
-            var actual_section = __actual_slide[1];
+        'slide_up' : function(){
+            var actual_row = actual_slide.row;
+            var actual_section = actual_slide.section;
             var scroll_status = false;
 
             if( (actual_row-1) >= 0 ){
-                __actual_slide[0]--;
-                __actual_slide[1] = 0;
+                actual_slide.row--;
+                actual_slide.section = 0;
                 scroll_status = true;
             }
 
             if(scroll_status)
-                this.slide( __actual_slide[0], __actual_slide[1] );
+                this.slide( actual_slide.row, actual_slide.section );
 
         },
-        'slide_down':function(){
-            var actual_row = __actual_slide[0];
-            var actual_section = __actual_slide[1];
+        'slide_down' : function(){
+            var actual_row = actual_slide.row;
+            var actual_section = actual_slide.section;
             var scroll_status = false;
 
-            if( (actual_row+1) < __sections.length ){
-                __actual_slide[0]++;
-                __actual_slide[1] = 0;
+            if( (actual_row+1) < sections.length ){
+                actual_slide.row++;
+                actual_slide.section = 0;
                 scroll_status = true;
             }
 
             if(scroll_status)
-                this.slide( __actual_slide[0], __actual_slide[1] );
+                this.slide( actual_slide.row, actual_slide.section );
         }
     }
 });
@@ -174,7 +189,12 @@ $(window).keydown(function(e){
     }
 });
 
-$('#menu-numeros').on('click', '.number', function(){});
+$('#menu-numeros').on('click', '.number', function(e){
+    e.preventDefault();
+    if( ( typeof(this.dataset.row) && typeof(this.dataset.section) ) !== 'undefined' ){
+        $slider_about_us.slide(this.dataset.row, this.dataset.section);
+    }
+});
 
 /**** Eventos Slider 1 */
 $('#menu').on('click', '.next-slide', function(e){
