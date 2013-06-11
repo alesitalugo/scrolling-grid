@@ -1,5 +1,14 @@
 node_modules
+temp
+test
 dist
-.tmp
-.sass-cache
 app/bower_components
+.sass-cache
+.tmp
+component.json
+package.json
+Gruntfile.js
+.bowerrc
+.editorconfig
+.gitattributes
+.jshintrc
