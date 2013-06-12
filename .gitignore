@@ -9,6 +9,7 @@ component.json
 package.json
 Gruntfile.js
 .bowerrc
+bower.json
 .editorconfig
 .gitattributes
 .jshintrc
