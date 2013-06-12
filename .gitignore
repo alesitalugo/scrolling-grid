@@ -13,3 +13,4 @@ bower.json
 .editorconfig
 .gitattributes
 .jshintrc
+app/styles/*.css
