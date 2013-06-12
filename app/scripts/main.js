@@ -60,6 +60,7 @@ Slider = ( function( options ) {
 
                     $slide_to_section = $($slide_to_row).children('.section')[actual_slide.section];
                     slide_direction = 'left';
+
                     if( transition == 'scrollto' ){
                         $(this.slider).stop().scrollTo( $($slide_to_section), 300);
                     } else {
@@ -70,7 +71,6 @@ Slider = ( function( options ) {
                         prev_slide = $slide_to_section;
 
                     }
-                    console.log( actual_slide );
                 }
             }
 
@@ -145,7 +145,6 @@ Slider = ( function( options ) {
 
 
             if(scroll_status){
-                console.log(actual_slide);
                 this.slide( actual_slide.row, actual_slide.section );
             }
         }
