@@ -3,16 +3,19 @@ Slider = ( function( options ) {
     var sections        = [];
     var actual_slide    = { 'row': 0, 'section': 0 };
     var slider          = null;
-    var transition      = 'scrollto'; //Default transition.
+    var transition      = 'scroll-to'; //Default transition.
     var prev_slide      = null;
     var slide_direction = null;
 
     if( options.transition != null)     // Set the transition efect | To Do: More transitions
         transition = options.transition;
+    if( options.start_position != null)     // If start position's set
+        actual_slide = options.start_position;
 
     return {
         'init' : function( el ){
             this.slider = el;
+            $(this.slider).addClass(transition);
             // Asigns value to __rows
             for ( var i=0; i < $(this.slider).children('.sections-row').length; i++){
                 var $actual_row = $(this.slider).children('.sections-row')[i];
@@ -25,6 +28,8 @@ Slider = ( function( options ) {
 
             // .section-row's width
             this.resize_adjust();
+            if( options.start_position != null)
+                this.slide(actual_slide);
         },
         'resize_adjust' : function(){
             var sections_width = Math.max.apply(null, sections);
@@ -47,21 +52,22 @@ Slider = ( function( options ) {
             });
 
         },
-        'slide' : function(row, section){
+        'slide' : function( coords ){
+
             var $slide_to_row = null;
             var $slide_to_section = null;
 
-            if( typeof( $(this.slider).children('.sections-row')[row] ) !== 'undefined' ){
-                $slide_to_row = $(this.slider).children('.sections-row')[row];
+            if( typeof( $(this.slider).children('.sections-row')[coords.row] ) !== 'undefined' ){
+                $slide_to_row = $(this.slider).children('.sections-row')[coords.row];
+                if( typeof( $($slide_to_row).children('.section')[coords.section] ) !== 'undefined' ){
 
-                if( typeof( $($slide_to_row).children('.section')[section] ) !== 'undefined' ){
-
-                    actual_slide.row = parseInt( row );
-                    actual_slide.section = parseInt( section );
+                    actual_slide.row = parseInt( coords.row );
+                    actual_slide.section = parseInt( coords.section );
 
                     $slide_to_section = $($slide_to_row).children('.section')[actual_slide.section];
                     slide_direction = 'left';
-                    if( transition == 'scrollto' ){
+
+                    if( transition == 'scroll-to' ){
                         $(this.slider).stop().scrollTo( $($slide_to_section), 300);
                     } else {
                         console.log( actual_slide );
@@ -71,7 +77,6 @@ Slider = ( function( options ) {
                         prev_slide = $slide_to_section;
 
                     }
-                    console.log( actual_slide );
                 }
             }
 
@@ -94,7 +99,7 @@ Slider = ( function( options ) {
                 scroll_status = true;
             }
             if(scroll_status)
-                this.slide( actual_slide.row, actual_slide.section );
+                this.slide( actual_slide );
 
         },
         'slide_prev' : function(){
@@ -116,7 +121,7 @@ Slider = ( function( options ) {
                 scroll_status = true;
             }
             if (scroll_status)
-                this.slide( actual_slide.row, actual_slide.section );
+                this.slide( actual_slide );
         },
         'slide_up' : function(){
             var actual_row = actual_slide.row;
@@ -130,7 +135,7 @@ Slider = ( function( options ) {
             }
 
             if(scroll_status)
-                this.slide( actual_slide.row, actual_slide.section );
+                this.slide( actual_slide );
 
         },
         'slide_down' : function(){
@@ -146,22 +151,22 @@ Slider = ( function( options ) {
 
 
             if(scroll_status){
-                console.log(actual_slide);
-                this.slide( actual_slide.row, actual_slide.section );
+                this.slide( actual_slide );
             }
         }
     }
 });
 
 
-var $slider_about_us = new Slider( { transition: 'scrollto' } );
-var $slider_inception = new Slider( { transition: 'pageflip' } );
+var $slider_about_us = new Slider( { transition: 'scroll-to', start_position: {'row': 0, 'section': 0} } );
+var $slider_home = new Slider ( { transition: 'pageflip', start_position:{'row': 0, 'section':0} } );
+var $slider_inception = new Slider( { transition: 'scroll-to' } );
 
 $slider_about_us_el = document.getElementById('sections');
 $slider_inception_el = document.getElementById('sections2');
 
 $slider_about_us.init( $slider_about_us_el );
-$slider_about_us.slide(0,2);
+//$slider_about_us.slide(0,2);
 
 $slider_inception.init( $slider_inception_el );
 
@@ -196,12 +201,17 @@ $(window).keydown(function(e){
     }
 });
 
-$('#menu-numeros').on('click', '.number', function(e){
+$('.menu-numeros, .menu-dots').on('click', '.number', function(e){
     e.preventDefault();
+    $('.number').removeClass('active');
     if( ( typeof(this.dataset.row) && typeof(this.dataset.section) ) !== 'undefined' ){
-        $slider_about_us.slide(this.dataset.row, this.dataset.section);
+        $slider_about_us.slide( { 'row': this.dataset.row, 'section': this.dataset.section } );
+    }else if( (typeof(this.dataset.row) && typeof(this.dataset.row) ) !== 'undefined' ){
+        $slider_inception_el.slide( { 'row': this.dataset.row, 'section': this.dataset.section } );
     }
+    $(this).addClass('active');
 });
+
 
 /**** Eventos Slider 1 */
 $('#menu').on('click', '.next-slide', function(e){
