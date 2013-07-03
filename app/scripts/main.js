@@ -158,7 +158,7 @@ Slider = ( function( options ) {
 });
 
 
-var $slider_about_us = new Slider( { transition: 'scroll-to', start_position: {'row': 0, 'section': 2} } );
+var $slider_about_us = new Slider( { transition: 'scroll-to', start_position: {'row': 0, 'section': 0} } );
 var $slider_inception = new Slider( { transition: 'pageflip' } );
 
 $slider_about_us_el = document.getElementById('sections');
