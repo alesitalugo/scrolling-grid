@@ -57,9 +57,16 @@ Slider = ( function( options ) {
             var $slide_to_row = null;
             var $slide_to_section = null;
 
+<<<<<<< HEAD
             if( typeof( $(this.slider).children('.sections-row')[coords.row] ) !== 'undefined' ){
                 $slide_to_row = $(this.slider).children('.sections-row')[coords.row];
                 if( typeof( $($slide_to_row).children('.section')[coords.section] ) !== 'undefined' ){
+=======
+            if( typeof( $(this.slider).children('.sections-row')[row] ) !== 'undefined' ){
+                $slide_to_row = $(this.slider).children('.sections-row')[row];
+
+                if( typeof( $($slide_to_row).children('.section')[section] ) !== 'undefined' ){
+>>>>>>> 385b41a3065df02b53d01c8c16e50ed7733bccfd
 
                     actual_slide.row = parseInt( coords.row );
                     actual_slide.section = parseInt( coords.section );
