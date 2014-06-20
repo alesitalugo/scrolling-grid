@@ -1,5 +1,8 @@
+'use strict';
+/* jshint camelcase: false */
+/* global Hammer, Slider */
+
 Slider = ( function( options ) {
-    'use strict';
     var sections        = [];
     var actual_slide    = { 'row': 0, 'section': 0 };
     var slider          = null;
@@ -7,10 +10,12 @@ Slider = ( function( options ) {
     var prev_slide      = null;
     var slide_direction = null;
 
-    if( options.transition != null)     // Set the transition efect | To Do: More transitions
+    if( options.transition !== null){     // Set the transition efect | To Do: More transitions
         transition = options.transition;
-    if( options.start_position != null)     // If start position's set
+    }
+    if( options.start_position !== null){     // If start position's set
         actual_slide = options.start_position;
+    }
 
     return {
         'init' : function( el ){
@@ -57,17 +62,9 @@ Slider = ( function( options ) {
             var $slide_to_row = null;
             var $slide_to_section = null;
 
-<<<<<<< HEAD
             if( typeof( $(this.slider).children('.sections-row')[coords.row] ) !== 'undefined' ){
                 $slide_to_row = $(this.slider).children('.sections-row')[coords.row];
                 if( typeof( $($slide_to_row).children('.section')[coords.section] ) !== 'undefined' ){
-=======
-            if( typeof( $(this.slider).children('.sections-row')[row] ) !== 'undefined' ){
-                $slide_to_row = $(this.slider).children('.sections-row')[row];
-
-                if( typeof( $($slide_to_row).children('.section')[section] ) !== 'undefined' ){
->>>>>>> 385b41a3065df02b53d01c8c16e50ed7733bccfd
-
                     actual_slide.row = parseInt( coords.row );
                     actual_slide.section = parseInt( coords.section );
 
