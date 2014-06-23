@@ -1,8 +1,8 @@
-'use strict';
 /* jshint camelcase: false */
-/* global Hammer, Slider */
+/* global Hammer */
+'use strict';
 
-Slider = ( function( options ) {
+var Slider = ( function( options ) {
     var sections        = [];
     var actual_slide    = { 'row': 0, 'section': 0 };
     var slider          = null;
@@ -165,8 +165,8 @@ Slider = ( function( options ) {
 var $slider_about_us = new Slider( { transition: 'scroll-to', start_position: {'row': 0, 'section': 0} } );
 var $slider_inception = new Slider( { transition: 'pageflip' } );
 
-$slider_about_us_el = document.getElementById('sections');
-$slider_inception_el = document.getElementById('sections2');
+var $slider_about_us_el = document.getElementById('sections');
+var $slider_inception_el = document.getElementById('sections2');
 
 $slider_about_us.init( $slider_about_us_el );
 //$slider_about_us.slide(0,2);
