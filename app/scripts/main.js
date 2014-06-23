@@ -2,10 +2,9 @@
 /* global Hammer */
 'use strict';
 
-var Slider = ( function( options ) {
+var Slider = function ( options ) {
     var sections        = [];
     var actual_slide    = { 'row': 0, 'section': 0 };
-    var slider          = null;
     var transition      = 'scroll-to'; //Default transition.
     var prev_slide      = null;
     var slide_direction = null;
@@ -22,24 +21,28 @@ var Slider = ( function( options ) {
             this.slider = el;
             $(this.slider).addClass(transition);
             // Asigns value to __rows
-            for ( var i=0; i < $(this.slider).children('.sections-row').length; i++){
-                var $actual_row = $(this.slider).children('.sections-row')[i];
-                sections.push( $($actual_row).children('.section').length );
-                $( $($actual_row).children('.section')  ).each(function(j){
+            function set_attributes( i, $row ){
+                $( $row.children('.section')  ).each(function(j){
                     this.setAttribute('data-row', i);
                     this.setAttribute('data-section', j);
                 });
             }
+            
+            for ( var i=0; i < $(this.slider).children('.sections-row').length; i++){
+                var $actual_row = $(this.slider).children('.sections-row')[i];
+                sections.push( $($actual_row).children('.section').length );
+                set_attributes( i, $($actual_row) );
+            }
 
             // .section-row's width
             this.resize_adjust();
-            if( options.start_position != null)  
+            if( options.start_position !== null){
                 this.slide(actual_slide);
+            }
         },
         'resize_adjust' : function(){
             var sections_width = Math.max.apply(null, sections);
             var slider_rows = $(this.slider).children('.sections-row');
-            var css_section = {}
 
             $(this.slider).css({
                 'width': $(window).width(),
@@ -58,7 +61,6 @@ var Slider = ( function( options ) {
 
         },
         'slide' : function( coords ){
-
             var $slide_to_row = null;
             var $slide_to_section = null;
 
@@ -71,7 +73,7 @@ var Slider = ( function( options ) {
                     $slide_to_section = $($slide_to_row).children('.section')[actual_slide.section];
                     slide_direction = 'left';
 
-                    if( transition == 'scroll-to' ){
+                    if( transition === 'scroll-to' ){
                         $(this.slider).stop().scrollTo( $($slide_to_section), 300);
                     } else {
                         console.log( actual_slide );
@@ -90,8 +92,7 @@ var Slider = ( function( options ) {
             var actual_section = actual_slide.section;
             var scroll_status = false;
 
-
-             if(actual_section >= ( sections[actual_row] - 1 ) ){
+            if(actual_section >= ( sections[actual_row] - 1 ) ){
                 if( ( actual_slide.row+1 ) < sections.length ){
                     actual_slide.row++;
                     actual_slide.section=0;
@@ -102,12 +103,12 @@ var Slider = ( function( options ) {
                 actual_slide.section++;
                 scroll_status = true;
             }
-            if(scroll_status)
+            if(scroll_status){
                 this.slide( actual_slide );
+            }
 
         },
         'slide_prev' : function(){
-            var actual_row = actual_slide.row;
             var actual_section = actual_slide.section;
             var scroll_status = false;
 
@@ -124,12 +125,12 @@ var Slider = ( function( options ) {
                 actual_slide.section--;
                 scroll_status = true;
             }
-            if (scroll_status)
+            if (scroll_status){
                 this.slide( actual_slide );
+            }
         },
         'slide_up' : function(){
             var actual_row = actual_slide.row;
-            var actual_section = actual_slide.section;
             var scroll_status = false;
 
             if( (actual_row-1) >= 0 ){
@@ -138,13 +139,13 @@ var Slider = ( function( options ) {
                 scroll_status = true;
             }
 
-            if(scroll_status)
+            if(scroll_status){
                 this.slide( actual_slide );
+            }
 
         },
         'slide_down' : function(){
             var actual_row = actual_slide.row;
-            var actual_section = actual_slide.section;
             var scroll_status = false;
 
             if( (actual_row+1) < sections.length ){
@@ -158,12 +159,12 @@ var Slider = ( function( options ) {
                 this.slide( actual_slide );
             }
         }
-    }
-});
+    };
+};
 
 
 var $slider_about_us = new Slider( { transition: 'scroll-to', start_position: {'row': 0, 'section': 0} } );
-var $slider_inception = new Slider( { transition: 'pageflip' } );
+var $slider_inception = new Slider( { transition: 'pageflip', start_position: {'row': 0, 'section': 0} } );
 
 var $slider_about_us_el = document.getElementById('sections');
 var $slider_inception_el = document.getElementById('sections2');
@@ -217,7 +218,7 @@ $('#menu').on('click', '.next-slide', function(e){
     $slider_about_us.slide_next();
 });
 
-Hammer($slider_about_us_el).on('swipeleft', function(e){
+new Hammer($slider_about_us_el).on('swipeleft', function(e){
     e.preventDefault();
     $slider_about_us.slide_next();
 });
@@ -226,7 +227,7 @@ $('#menu').on('click', '.prev-slide', function(e){
     e.preventDefault();
     $slider_about_us.slide_prev();
 });
-Hammer($slider_about_us_el).on('swiperight', function(e){
+new Hammer($slider_about_us_el).on('swiperight', function(e){
     e.preventDefault();
     $slider_about_us.slide_prev();
 });
@@ -234,7 +235,7 @@ $('#menu').on('click', '.up-slide', function(e){
     e.preventDefault();
     $slider_about_us.slide_up();
 });
-Hammer($slider_about_us_el).on('swipeup', function(e){
+new Hammer($slider_about_us_el).on('swipeup', function(e){
     e.preventDefault();
     $slider_about_us.slide_up();
 });
@@ -242,7 +243,7 @@ $('#menu').on('click', '.down-slide', function(e){
     e.preventDefault();
     $slider_about_us.slide_down();
 });
-Hammer($slider_about_us_el).on('swipedown', function(e){
+new Hammer($slider_about_us_el).on('swipedown', function(e){
     e.preventDefault();
     $slider_about_us.slide_down();
 });
